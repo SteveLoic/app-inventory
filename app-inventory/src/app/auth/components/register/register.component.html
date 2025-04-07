@@ -1,0 +1,29 @@
+<ng-container *ngIf="data$ | async as data">
+  <div class="auth-container">
+    <h2>Register</h2>
+    <!-- <p *ngIf="message" class="message">{{ message }}</p> -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input type="text" placeholder="Name ..." formControlName="name" />
+      <input type="email" placeholder="Email ..." formControlName="email" />
+      <input
+        type="password"
+        placeholder="Psssword"
+        formControlName="password"
+      />
+      <input
+        type="number"
+        placeholder="Phone Number"
+        formControlName="phoneNumber"
+      />
+
+      <button type="submit" [disabled]="data.isSubmitting">Register</button>
+    </form>
+    <p>
+      Already have an account?<a
+        [routerLink]="['/login']"
+        routerLinkActive="router-link-active"
+        >Login</a
+      >
+    </p>
+  </div>
+</ng-container>

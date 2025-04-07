@@ -1,0 +1,42 @@
+<ng-container *ngIf="data$ | async as data">
+  <div class="dashboard-layout">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <h1 class="ims">Inventory</h1>
+      <ul class="nav-links">
+        <li *ngIf="data.isAuthenticated">
+          <a routerLink="/dashboard">Dashbaord</a>
+        </li>
+        <li *ngIf="data.isAuthenticated">
+          <a routerLink="/transactions">Transactions</a>
+        </li>
+        <li *ngIf="data.role === 'ADMIN'">
+          <a routerLink="/category">Category</a>
+        </li>
+        <li *ngIf="data.role === 'ADMIN'">
+          <a routerLink="/products">Product</a>
+        </li>
+        <li *ngIf="data.role === 'ADMIN'">
+          <a routerLink="/supplier">Supplier</a>
+        </li>
+        <li *ngIf="data.isAuthenticated">
+          <a routerLink="/purchase">Purchase</a>
+        </li>
+        <li *ngIf="data.isAuthenticated"><a routerLink="/sell">Sell</a></li>
+        <li *ngIf="data.isAuthenticated">
+          <a routerLink="/profile">Profile</a>
+        </li>
+        <li *ngIf="!data.isAuthenticated"><a routerLink="/login">Login</a></li>
+        <li *ngIf="!data.isAuthenticated">
+          <a routerLink="/register">Register</a>
+        </li>
+        <li *ngIf="data.isAuthenticated"><a (click)="onLogout()">Logout</a></li>
+      </ul>
+    </div>
+
+    <!-- MAIN CONTENT Area-->
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</ng-container>

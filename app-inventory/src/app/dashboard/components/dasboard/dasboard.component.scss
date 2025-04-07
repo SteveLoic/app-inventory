@@ -1,0 +1,42 @@
+.dashboard-container {
+  padding: 20px;
+}
+
+.dashboard-container select {
+  padding: 8px;
+  font-size: 17px;
+  border: 1px solid #f0f0f0;
+  border-radius: 5px;
+  margin: 0px 10px;
+}
+
+h1{
+  margin-bottom: 4rem;
+}
+
+h1,
+h2 {
+  text-align: left;
+}
+
+.transaction-selection{
+  margin-bottom: 50px;
+   margin-top: 30px
+}
+
+.transaction-count-bar {
+  margin-bottom: 30px
+}
+
+.transaction-amount {
+  margin-bottom: 30px
+}
+
+.transaction-month {
+  margin-bottom: 50px
+}
+ngx-charts-bar-vertical,
+ngx-charts-pie-chart {
+  display: block;
+  margin: auto;
+}

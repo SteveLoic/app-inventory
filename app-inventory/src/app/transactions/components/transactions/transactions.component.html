@@ -1,0 +1,39 @@
+<ng-container *ngIf="data$ | async as data">
+  <div class="transactions-page">
+    <p *ngIf="data.error" class="message">{{ data.error }}</p>
+    <div *ngIf="data.transactions.length > 0">
+      <table class="transactions-table">
+        <thead>
+          <tr>
+            <th>TYPE</th>
+            <th>STATUS</th>
+            <th>TOTAL PRICE</th>
+            <th>TOTAL PRODUCTS</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let transaction of data.transactions">
+            <td>{{ transaction.transactionType }}</td>
+            <td>{{ transaction.transactionStatus }}</td>
+            <td>{{ transaction.totalPrice }}</td>
+            <td>{{ transaction.totalProducts }}</td>
+            <td (click)="navigateTOTransactionsDetailsPage(transaction.id)">
+              <button>View Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!--   
+    <app-pagination
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (pageChange)="onPageChange($event)"
+    >
+    </app-pagination>
+    -->
+  </div>
+</ng-container>

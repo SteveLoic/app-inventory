@@ -1,0 +1,29 @@
+<ng-container *ngIf="data$ | async as data">
+  <div class="profile-page">
+    <div *ngIf="data.user" class="profile-card">
+      <h1>Hello, {{ data.user.name }} ☺️☺️</h1>
+
+      <div class="profile-info">
+        <div class="profile-item">
+          <label for="">Name</label>
+          <span>{{ data.user.name }}</span>
+        </div>
+
+        <div class="profile-item">
+          <label for="">Email</label>
+          <span>{{ data.user.email }}</span>
+        </div>
+
+        <div class="profile-item">
+          <label for="">Phone Number</label>
+          <span>{{ data.user.phoneNumber }}</span>
+        </div>
+
+        <div class="profile-item">
+          <label for="">Role</label>
+          <span>{{ data.user.role }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

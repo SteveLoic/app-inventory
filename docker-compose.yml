@@ -1,0 +1,52 @@
+services:
+  mysql:
+    container_name: inventorydb
+    image: mysql
+    volumes:
+      - inventory_db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: username
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: inventorydb
+    networks:
+      - inventory_network
+    ports:
+      - "3306:3306"
+    restart: always
+  inventory-api:
+    container_name: inventory-api
+    build:
+      context: ./InventoryMamanagementSystem
+      dockerfile: Dockerfile
+    ports:
+      - "5051:5051"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/inventorydb
+      SPRING_DATASOURCE_USERNAME: username
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_TEST-ON-BORROW: true
+      SPRING_DATASOURCE_VALIDATION-QUERY: SELECT 1
+    restart: always
+    networks:
+      - inventory_network
+  inventory-frontend:
+    container_name: inventory-ui
+    build:
+      context: ./app-inventory
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - inventory-api
+    restart: always
+    networks:
+      - inventory_network
+
+volumes:
+  inventory_db:
+networks:
+  inventory_network:
+    driver: bridge

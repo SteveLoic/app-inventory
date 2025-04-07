@@ -1,0 +1,12 @@
+<div class="product-form-page">
+  <form [formGroup]="form" (submit)="onHandleSubmit()">
+    <div class="form-group">
+      <label for="">Product Image</label>
+      <input type="file" (change)="onHandleImage($event)" />
+      <div *ngIf="imageUrl">
+        <img [src]="imageUrl" alt="preview" class="image-preview" />
+      </div>
+    </div>
+    <button type="submit">add Image</button>
+  </form>
+</div>

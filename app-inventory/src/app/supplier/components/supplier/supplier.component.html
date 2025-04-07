@@ -1,0 +1,31 @@
+<ng-container *ngIf="data$ | async as data">
+  <div class="supplier-page">
+    @if(data.error) {
+    <p class="message">{{ data.error }}</p>
+    }
+
+    <div class="supplier-header">
+      <h1>Supplier</h1>
+      <div class="add-sup">
+        <button (click)="navigateToAddSupplierPage()">Add Supplier</button>
+      </div>
+    </div>
+    @if(data.suppliers.length) {
+    <ul class="supplier-list">
+      @for (supplier of data.suppliers; track supplier.id) {
+      <li class="supplier-item">
+        <span>{{ supplier.name }}</span>
+
+        <div class="supplier-actions">
+          <button (click)="navigateToEditSupplierPage(supplier.id)">
+            Edit
+          </button>
+          <button (click)="handleDeleteSupplier(supplier)">Delete</button>
+        </div>
+      </li>
+      }
+    </ul>
+
+    }
+  </div>
+</ng-container>

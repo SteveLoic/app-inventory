@@ -1,0 +1,38 @@
+<ng-container *ngIf="data$ | async as data">
+  <div class="category-page">
+    <div *ngIf="message" class="message">
+      {{ data.error }}
+    </div>
+
+    <div class="category-header">
+      <h1>Category</h1>
+      <div class="add-cat">
+        <form [formGroup]="form">
+          <input
+            type="text"
+            formControlName="name"
+            placeholder="Category name"
+          />
+          @if (!isEditing) {
+          <button (click)="onAddCategory()">Add Category</button>
+          } @if (isEditing) {
+          <button (click)="editCategory()">Edit Category</button>
+          }
+        </form>
+      </div>
+    </div>
+    @if(data.categories.length > 0) { @for (category of data.categories; track
+    category.id ) {
+    <ul class="category-list">
+      <li class="category-item">
+        <span>{{ category.name }}</span>
+        <div class="category-actions">
+          <button (click)="OnEditCategory(category)">Edit</button>
+          <button (click)="OnDeleteCateroy(category)">Delete</button>
+        </div>
+      </li>
+    </ul>
+
+    } }
+  </div>
+</ng-container>
